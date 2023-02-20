@@ -1,0 +1,12 @@
+---
+# tasks file for install_nginx
+  - name: Install nginx1.18
+    apt:
+      pkg: nginx
+
+  - name: Copy File
+    template:
+      src: ngix_index_template.j2
+      dest: /var/www/html/index.nginx-debian.html
+#      dest: /usr/share/nginx/html/index.html
+      mode: 0644

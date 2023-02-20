@@ -1,0 +1,22 @@
+---
+# tasks file for install_nginx_balancer
+  - name: Install nginx1.18
+    apt:
+      pkg: nginx
+
+  - name: comment a line site-enabled
+    lineinfile:
+      dest: /etc/nginx/nginx.conf
+      regexp: 'include \/etc\/nginx\/sites-enabled\/'
+      line: '#     include /etc/nginx/sites-enabled/'
+
+  - name: Create a config file from a template
+    template:
+      src: balancer.j2
+      dest: /etc/nginx/conf.d/loadbalancer.conf
+      mode: 0644
+
+  - name: Restart nginx
+    service:
+      name: nginx
+      state: restarted

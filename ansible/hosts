@@ -1,0 +1,16 @@
+[test]
+ansible_1 ansible_host=192.168.122.191
+
+[node2]
+ansible_2 ansible_host=192.168.122.112 ansible_user=utest ansible_password=ptest env_host=node2 
+
+[nginx_hosts]
+ansible_2 ansible_host=192.168.122.112 ansible_user=utest ansible_password=ptest  env_host=node2
+ansible_3 ansible_host=192.168.122.113 ansible_user=root ansible_ssh_private_key_file=/root/.ssh/ansible_3 env_host=node3
+
+[my_warehouse]
+warehouse ansible_host=192.168.122.122 ansible_user=user ansible_password=user
+
+[all_groups:children]
+nginx_hosts
+test

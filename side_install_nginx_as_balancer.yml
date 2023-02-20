@@ -1,0 +1,13 @@
+- name: Install nginx as a server
+  hosts: nginx_hosts
+  become: yes
+
+  roles:
+    - install_nginx
+
+- name: Install nginx as a balancer
+  hosts: test
+  become: yes
+
+  roles:
+    - install_nginx_balancer
